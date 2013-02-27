@@ -1,0 +1,43 @@
+Random Picture Select
+
+PHP:
+<?php if ($logo): ?> 
+  <?php $h=rand(1,5); ?>
+  <div id="logoimg">
+    <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>">
+      <img src="images/Header<?php print $h; ?>.jpg" alt="<?php print t('Home'); ?>" />
+    </a>
+  </div> 
+<?php endif; ?>
+
+CSS:
+#logoimg {
+  float:left;
+  margin:0;
+  padding:0 12px 0 0;
+}
+
+.header-1{
+   background: url(images/Header1.jpg) no-repeat;
+   display: block;
+        }
+        
+.header-2{
+   background: url(images/Header2.jpg) no-repeat;
+   display: block;
+   }
+        
+.header-3{
+   background: url(images/Header3.jpg) no-repeat;
+   display: block;      
+   }
+        
+.header-4{
+   background: url(images/Header4.jpg) no-repeat;
+   display: block;
+   }
+        
+.header-5{
+   background: url(images/Header5.jpg) no-repeat;
+   display: block;
+}
