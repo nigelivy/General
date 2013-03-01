@@ -2,7 +2,8 @@ jQuery(function(){
   jQuery('#slides').slides({
     play: 5000,
     pause: 2500,
-    hoverPause: true 
+    hoverPause: true,
+    effect: 'slide
   });
 });
 
