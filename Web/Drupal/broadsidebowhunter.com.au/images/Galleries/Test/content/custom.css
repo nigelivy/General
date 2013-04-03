@@ -1,0 +1,48 @@
+.footer a {
+  color: #333333 !important;
+  background-color: inherit;
+}
+
+.image-container-frame {
+  background-color: #FFFFFF !important;
+  border-color: #000000 !important;
+  color: inherit;
+}
+
+.thumb {
+}
+
+body {
+  background-color: #111111 !important;
+  color: #000000 !important;
+}
+
+h3 {
+  color: #595959 !important;
+  background-color: inherit;
+}
+
+.logo {
+  display: none !important;
+}
+
+.footer {
+  color: #595959 !important;
+  background-color: inherit;
+}
+
+#liveUpdateSiteTitle {
+}
+
+#sitetitle {
+}
+
+.image-container {
+  background-color: #000000 !important;
+  color: inherit;
+}
+
+h2 {
+  color: #333333 !important;
+  background-color: inherit;
+}

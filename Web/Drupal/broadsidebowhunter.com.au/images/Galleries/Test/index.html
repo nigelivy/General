@@ -1,0 +1,175 @@
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<head>  
+  
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="generator" content="DIMIN Slideshow plugin for Adobe Lightroom" >
+    <title></title>   
+    
+   
+  
+    <link rel="stylesheet" href="./resources/slideshow.css" />
+	<link rel="stylesheet" href="./resources/carousel.css" />  
+          
+    <script type="text/javascript" src="./resources/ext-core.js"></script>
+    <script type="text/javascript" src="./resources/carousel.js"></script>
+	
+		
+	<link rel="stylesheet" href="./resources/lightbox.css" />
+	<script type="text/javascript" src="./resources/lightbox.js"></script>
+	
+    <style>
+        .image-container { width: 400px; height: 266px; }
+        .image-container-frame { width: 400px; height: 266px; }	
+	    .ux-carousel-caption { color: #ffffff !important; font-size: 14px; height: 20px; margin-top: 4px; }	  
+    </style>  
+		
+  <link rel="stylesheet" href="./content/custom.css" />  		
+	
+    <script>
+
+        Ext.onReady(function() {
+			
+			 
+			            this.photoTemplate = new Ext.Template([                '<a href="{href}" class="lightbox" title="{title}">',
+					'<img src="{src}" alt="{title}" style="margin-top:{pady}px;" id="ID{id}_thumb" width="{thumbWidth}" height="{thumbHeight}" />',
+                '</a>'
+            ]);
+					
+				
+			
+            this.carousel = new Ext.ux.Carousel('slideshow-container', {
+					
+                itemSelector: 'a.lightbox',
+								
+                interval: 3,
+                autoPlay: true,
+                showPlayButton: true,
+                pauseOnNavigate: true,
+                freezeOnHover: true,
+                transitionType: 'fade',
+                navigationOnHover: true       
+            });
+
+
+            	
+            Ext.ux.Lightbox.register('a.lightbox', true);
+            
+            Ext.ux.Lightbox.on('open', function() {
+                this.carousel.pause();
+            }, this);
+            
+            Ext.ux.Lightbox.on('close', function(image) {
+                this.carousel.setSlide(image);
+                this.carousel.play();
+            }, this); 
+			 
+            
+            // load images
+			 
+            this.carousel.clear();
+            Ext.each(this.photos, function(item) {
+				this.carousel.add(this.photoTemplate.append('slideshow-container', item));
+            }, this);
+            this.carousel.refresh().play();
+			 
+        });
+    </script>
+    
+</head>
+
+<body>
+
+  <div class="header">
+ 
+      <h1></h1>
+      <h2></h2>
+      <p></p>
+  
+  </div>
+
+ 
+<script>
+    this.photos = new Array();
+	     this.photos.push( { 
+	     src: 'content/bin/images/thumb/NIGELIVY_20120917_0103.jpg', 
+         href: 'content/bin/images/large/NIGELIVY_20120917_0103.jpg', 
+         title: '',
+         pady: '0',
+	     id: '683142',
+	     thumbWidth: '355',
+	     thumbHeight: '266',
+	     width: '700',
+	     height: '525'
+     } );
+       this.photos.push( { 
+	     src: 'content/bin/images/thumb/NIGELIVY_20120917_0104.jpg', 
+         href: 'content/bin/images/large/NIGELIVY_20120917_0104.jpg', 
+         title: '',
+         pady: '0',
+	     id: '683154',
+	     thumbWidth: '355',
+	     thumbHeight: '266',
+	     width: '700',
+	     height: '525'
+     } );
+       this.photos.push( { 
+	     src: 'content/bin/images/thumb/NIGELIVY_20120917_0105.jpg', 
+         href: 'content/bin/images/large/NIGELIVY_20120917_0105.jpg', 
+         title: '',
+         pady: '0',
+	     id: '683166',
+	     thumbWidth: '355',
+	     thumbHeight: '266',
+	     width: '700',
+	     height: '525'
+     } );
+       this.photos.push( { 
+	     src: 'content/bin/images/thumb/NIGELIVY_20120917_0107.jpg', 
+         href: 'content/bin/images/large/NIGELIVY_20120917_0107.jpg', 
+         title: '',
+         pady: '0',
+	     id: '683190',
+	     thumbWidth: '355',
+	     thumbHeight: '266',
+	     width: '700',
+	     height: '525'
+     } );
+       this.photos.push( { 
+	     src: 'content/bin/images/thumb/NIGELIVY_20120917_0111.jpg', 
+         href: 'content/bin/images/large/NIGELIVY_20120917_0111.jpg', 
+         title: '',
+         pady: '0',
+	     id: '683254',
+	     thumbWidth: '355',
+	     thumbHeight: '266',
+	     width: '700',
+	     height: '525'
+     } );
+  </script>	
+
+
+  <div class="image-container-frame">
+    <div id="slideshow-container" class="image-container">
+
+      
+    </div>
+  </div>
+
+
+
+	
+<div class="footer">
+
+	
+  Photography by: 
+			<a href="./"> <span>
+</span>
+		</a>
+
+    <p>Slideshow created with <a href="http://www.dimin.net/software/lightroom/">DIMIN SlideshowJS</a> plug-in for Adobe Lightroom</p>
+  </div>
+</body>
+</html>

@@ -1,0 +1,68 @@
+/*
+ * DIMIN plug-ins for Adobe Lightroom
+ * http://www.dimin.net/
+ * Copyright(c) 2008-2009, Dmitry Fedorov
+ * 
+ * The MIT License
+ */
+
+
+body {
+    background: #808080;
+    font: 86% 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
+    padding: 50px;
+}
+
+h1, h2, h3 { font-family: "Trebuchet MS",Verdana,Sans-Serif; }
+
+h2 {
+	font-size: 1.5em;
+	letter-spacing: 0.4pt;
+	text-transform: uppercase;
+	padding-top: 0.5em;
+	color: #333333;
+}
+
+h3 {
+	font-size: 1em;
+	letter-spacing: 0.2pt;
+	text-transform: uppercase;
+	padding-top: 0.5em;
+	color: #595959;
+}
+
+a img{ border: none; }
+
+
+/*****************************************************************
+  Classes
+*****************************************************************/
+
+.thumbnail {
+	padding: 4px;
+	background-color: #595959;
+	border: 1px solid;
+	border-color: #333333;	
+	float: left;
+	margin-right: 10px;
+	margin-bottom: 10px;
+	text-align: center;
+}
+
+.footer {
+  clear: both;
+  margin-top: 0px;
+  padding-top: 15px;
+  font-size: 80%;
+  color: #595959;
+  text-align: left;
+}
+
+.footer a, a.visited {
+	color: #333333;
+	text-decoration: none;
+}
+
+.logo {
+  float: right;  
+}

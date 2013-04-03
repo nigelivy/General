@@ -1,0 +1,131 @@
+<?php
+
+/**
+ * Block Video Player module
+ * Enables custom block to set up a video player with uploaded video file
+ *
+ * @copyright (c) 2011 Andrzej Kluczny, www.DesignEnd.net
+ */
+
+/**
+ * Implementation of hook_init().
+ */
+function block_video_init() {
+  drupal_add_js(drupal_get_path('module', 'block_video') . '/js/swfobject.js');
+}
+
+/**
+ * Implementation of hook_block_info().
+ */
+function block_video_block_info() {
+  $blocks['video_player'] = array(
+    'info' => t('Video player'),
+    'cache' => DRUPAL_NO_CACHE,
+  );
+
+  return $blocks;
+}
+
+/**
+ * Implementation of hook_block_configure().
+ */
+function block_video_block_configure($delta = '') {
+  $form = array();
+  if ($delta == 'video_player') {
+    $form['video_player'] = array(
+      '#type' => 'fieldset',
+      '#title' => t('Video player config'),
+    );
+    $form['video_player']['file'] = array(
+      '#type' => 'file',
+      '#title' => t('Video file'),
+      '#description' => t('Available filetypes: flv, mp4, swf')
+    );
+    $form['video_player']['player_width'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Player width'),
+      '#default_value' => variable_get('block_video_player_width', 300),
+    );
+    $form['video_player']['player_height'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Player height'),
+      '#default_value' => variable_get('block_video_player_height', 200),
+    );
+    $form['video_player']['player_volume'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Default volume'),
+      '#default_value' => variable_get('block_video_player_volume', 20),
+      '#options' => drupal_map_assoc(range(0, 100)),
+    );
+    $form['video_player']['player_autostart'] = array(
+      '#type' => 'checkbox',
+      '#title' => t('Enable autostart'),
+      '#default_value' => variable_get('block_video_player_autostart', FALSE),
+    );
+    $form['video_player']['current'] = array(
+      '#type' => 'item',
+      '#title' => t('Current file preview'),
+      '#field_prefix' => variable_get('block_video_player_file_path', NULL) . '<div id="video-player-preview">',
+      '#field_suffix' => '</div>',
+    );
+    $form['#attributes'] = array('enctype' => "multipart/form-data");
+
+    if ($filepath = variable_get('block_video_player_file_path', NULL)) {
+      drupal_add_js("(function ($) {
+                swfobject.embedSWF('" . base_path() . drupal_get_path('module', 'block_video') . "/player.swf', 'video-player-preview', '" . variable_get('block_video_player_width', 300) . "', '" . variable_get('block_video_player_height', 200) . "', '9.0.0', null, {
+                    file: '" . file_create_url('public://' . $filepath) . "',
+                    volume: '" . variable_get('block_video_player_volume', 20) . "',
+                    autostart: " . variable_get('block_video_player_autostart', 0) . "
+                });
+            })(jQuery);", array('type' => 'inline', 'scope' => 'footer', 'group' => JS_THEME, 'weight' => 100));
+    }
+  }
+
+  return $form;
+}
+
+/**
+ * Implementation of hook_block_save().
+ */
+function block_video_block_save($delta = '', $edit = array()) {
+  if ($delta == 'video_player') {
+    if ($file = file_save_upload('file', array('file_validate_extensions' => array('mp4 flv swf')))) {
+      $parts = pathinfo($file->filename);
+      $filename = 'public://' . $file->filename;
+      if ($file = file_copy($file, $filename, FILE_EXISTS_REPLACE)) {
+        variable_set('block_video_player_file_path', $file->filename);
+      }
+    }
+    variable_set('block_video_player_width', $edit['player_width']);
+    variable_set('block_video_player_height', $edit['player_height']);
+    variable_set('block_video_player_volume', $edit['player_volume']);
+    variable_set('block_video_player_autostart', $edit['player_autostart']);
+  }
+}
+
+/**
+ * Implementation of hook_block_view().
+ */
+function block_video_block_view($delta = '') {
+  $block = array();
+
+  switch ($delta) {
+    case 'video_player':
+      $block['subject'] = '';
+      $block['content'] = '<div id="video-player"></div>';
+
+      if ($filepath = variable_get('block_video_player_file_path', NULL)) {
+        drupal_add_js("(function ($) {
+                    swfobject.embedSWF('" . base_path() . drupal_get_path('module', 'block_video') . "/player.swf', 'video-player', '" . variable_get('block_video_player_width', 300) . "', '" . variable_get('block_video_player_height', 200) . "', '9.0.0', null, {
+                        file: '" . file_create_url('public://' . $filepath) . "',
+                        volume: '" . variable_get('block_video_player_volume', 20) . "',
+                        autostart: " . variable_get('block_video_player_autostart', 0) . "
+                    });
+                })(jQuery);", array('type' => 'inline', 'group' => JS_THEME, 'weight' => 100));
+      }
+
+      break;
+  }
+
+  return $block;
+}

@@ -1,0 +1,33 @@
+<?xml version="1.0" standalone="no"?>
+<gallery title="" frameColor="0xFFFFFF" frameWidth="10" imagePadding="20" displayTime="3.00">
+    <image>
+        <filename>images/NIGELIVY_20120917_0103.jpg</filename>
+        <caption></caption>
+        <width>640</width>
+        <height>480</height>
+    </image>
+    <image>
+        <filename>images/NIGELIVY_20120917_0104.jpg</filename>
+        <caption></caption>
+        <width>640</width>
+        <height>480</height>
+    </image>
+    <image>
+        <filename>images/NIGELIVY_20120917_0105.jpg</filename>
+        <caption></caption>
+        <width>640</width>
+        <height>480</height>
+    </image>
+    <image>
+        <filename>images/NIGELIVY_20120917_0107.jpg</filename>
+        <caption></caption>
+        <width>640</width>
+        <height>480</height>
+    </image>
+    <image>
+        <filename>images/NIGELIVY_20120917_0111.jpg</filename>
+        <caption></caption>
+        <width>640</width>
+        <height>480</height>
+    </image>
+</gallery>
